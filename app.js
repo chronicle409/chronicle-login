@@ -97,4 +97,19 @@ document.getElementById('cf').addEventListener('submit', async e => {
   } catch { wait.textContent = 'Could not connect.'; }
   msgs.scrollTop = msgs.scrollHeight;
 });
+document.querySelectorAll('.field input').forEach(i => {
+  const f = i.closest('.field'), m = document.createElement('div');
+  m.className = 'mir'; f.appendChild(m); f.classList.add('has-mir');
+  let n = 0;
+  const draw = () => {
+    const v = i.value, p = i.type === 'password';
+    m.innerHTML = '';
+    [...v].forEach((c, k) => { const s = document.createElement('span'); s.textContent = p ? '\u2022' : c; if (k >= n) s.className = 'n'; m.appendChild(s); });
+    n = v.length;
+    f.classList.toggle('has-mir', m.scrollWidth <= m.clientWidth + 1);
+  };
+  i.addEventListener('input', draw);
+  i.closest('form').addEventListener('reset', () => setTimeout(() => { n = 0; draw(); }, 0));
+  new MutationObserver(() => { n = i.value.length; draw(); }).observe(i, {attributes:true, attributeFilter:['type']});
+});
 play();
