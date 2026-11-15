@@ -89,3 +89,10 @@ input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(10,6
 .help{right:48px}
 .tags p{max-width:none}
 }
+.mir{position:absolute;left:19px;right:49px;top:0;height:var(--fh);line-height:var(--fh);font-size:16px;font-family:inherit;color:var(--ink);white-space:pre;overflow:hidden;pointer-events:none;display:none}
+.field.ic .mir{left:55px}
+.field.has-mir .mir{display:block}
+.field.has-mir input{color:transparent;caret-color:var(--ink)}
+.mir span{display:inline-block}
+.mir span.n{animation:ch .4s ease both}
+@keyframes ch{from{opacity:0;filter:blur(6px);transform:translateY(7px)}to{opacity:1;filter:none;transform:none}}
