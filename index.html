@@ -16,13 +16,9 @@ button{font-family:inherit}
 .screen{position:relative;height:100%;height:100dvh;max-width:430px;margin:0 auto;background:var(--paper);overflow:hidden}
 .screen.mode-signup{--hh:30%}
 @media (max-height:720px){.screen{--hh:31%}.screen.mode-signup{--hh:27%}}
-
-/* hero + brand (same animation as before) */
-.hero{position:absolute;left:0;right:0;top:0;height:100%;background:var(--grad);z-index:2;border-bottom-left-radius:0;
- transition:height 1s var(--ease),border-radius 1s var(--ease)}
+.hero{position:absolute;left:0;right:0;top:0;height:100%;background:var(--grad);z-index:2;border-bottom-left-radius:0;transition:height 1s var(--ease),border-radius 1s var(--ease)}
 .screen.s1 .hero{height:var(--hh);border-bottom-left-radius:92% 58%}
-.brand{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);color:#fff;white-space:nowrap;
- transition:left 1s var(--ease),top 1s var(--ease),transform 1s var(--ease)}
+.brand{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);color:#fff;white-space:nowrap;transition:left 1s var(--ease),top 1s var(--ease),transform 1s var(--ease)}
 .screen.s1 .brand{left:28px;top:calc(clamp(52px,8dvh,72px) + env(safe-area-inset-top,0px));transform:translate(0,0)}
 .brand h1{margin:0;font-size:26px;font-weight:700;letter-spacing:.16em;transition:font-size 1s}
 .screen.s1 .brand h1{font-size:23px}
@@ -34,10 +30,7 @@ button{font-family:inherit}
 .help{position:absolute;right:24px;top:calc(clamp(34px,5dvh,46px) + env(safe-area-inset-top,0px));z-index:3;display:flex;align-items:center;gap:8px;background:none;border:0;color:#fff;font-size:14px;font-weight:600;cursor:pointer;padding:4px;border-radius:10px;opacity:0;transition:opacity .5s}
 .screen.s1 .help{opacity:1;transition-delay:.6s}
 .help svg{width:24px;height:24px}
-
-/* forms */
-.form{position:absolute;left:0;right:0;top:var(--hh);bottom:0;padding:clamp(16px,3.4dvh,32px) 26px calc(12px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;overflow-y:auto;-webkit-overflow-scrolling:touch;
- visibility:hidden;pointer-events:none;transition:top 1s var(--ease),visibility 0s .3s}
+.form{position:absolute;left:0;right:0;top:var(--hh);bottom:0;padding:clamp(16px,3.4dvh,32px) 26px calc(12px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;overflow-y:auto;-webkit-overflow-scrolling:touch;visibility:hidden;pointer-events:none;transition:top 1s var(--ease),visibility 0s .3s}
 .screen.mode-login #lf,.screen.mode-signup #sf{visibility:visible;pointer-events:auto;transition:top 1s var(--ease),visibility 0s 0s}
 .rise{opacity:0;transform:translateY(18px);transition:opacity .45s ease,transform .45s ease}
 .screen.s2.mode-login #lf .rise,.screen.s2.mode-signup #sf .rise{opacity:1;transform:none;transition:opacity .55s ease,transform .55s ease;transition-delay:calc(var(--i)*70ms + 120ms)}
@@ -64,8 +57,7 @@ input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(10,6
 .agree input:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 .agree a,.agree .tl{color:var(--blue);text-decoration:underline}
 .login-wrap{display:flex;justify-content:center;margin-top:clamp(12px,2.4dvh,20px);flex:none}
-.login{height:clamp(48px,6.6dvh,54px);width:100%;border:0;border-radius:30px;background:var(--blue);color:#fff;font-size:16px;font-weight:600;cursor:pointer;position:relative;
- box-shadow:0 8px 18px rgba(10,61,240,.28);transition:width .4s var(--ease),background .3s}
+.login{height:clamp(48px,6.6dvh,54px);width:100%;border:0;border-radius:30px;background:var(--blue);color:#fff;font-size:16px;font-weight:600;cursor:pointer;position:relative;box-shadow:0 8px 18px rgba(10,61,240,.28);transition:width .4s var(--ease),background .3s}
 .login span{transition:opacity .2s}
 .login.busy{width:52px;pointer-events:none}
 .login.busy span{opacity:0}
@@ -75,8 +67,7 @@ input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(10,6
 .or{display:flex;align-items:center;gap:12px;margin:clamp(12px,2.4dvh,20px) 0 clamp(10px,1.8dvh,14px);font-size:13px;color:var(--muted)}
 .or::before,.or::after{content:"";flex:1;height:1px;background:var(--line)}
 .socials{display:flex;justify-content:center;gap:14px;flex:none}
-.soc{--c:#111;--w:112px;width:52px;height:52px;flex:none;border-radius:16px;border:0;background:#fff;color:var(--ink);box-shadow:0 4px 12px rgba(20,30,90,.1);display:flex;align-items:center;justify-content:center;overflow:hidden;white-space:nowrap;cursor:pointer;
- transition:width .35s cubic-bezier(.4,0,.2,1),background .3s,color .3s,box-shadow .3s}
+.soc{--c:#111;--w:112px;width:52px;height:52px;flex:none;border-radius:16px;border:0;background:#fff;color:var(--ink);box-shadow:0 4px 12px rgba(20,30,90,.1);display:flex;align-items:center;justify-content:center;overflow:hidden;white-space:nowrap;cursor:pointer;transition:width .35s cubic-bezier(.4,0,.2,1),background .3s,color .3s,box-shadow .3s}
 .soc span{max-width:0;opacity:0;margin-left:0;font-size:13px;font-weight:600;transition:max-width .35s,opacity .3s .05s,margin .35s}
 .soc:hover,.soc:focus-visible{width:var(--w);background:var(--c);color:#fff;box-shadow:0 0 14px var(--c),0 0 30px color-mix(in srgb,var(--c) 55%,transparent)}
 .soc:hover span,.soc:focus-visible span{max-width:90px;opacity:1;margin-left:8px}
@@ -84,15 +75,22 @@ input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(10,6
 .soc:hover svg,.soc:focus-visible svg{filter:brightness(0) invert(1)}
 .bottom{margin-top:auto;text-align:center;font-size:14px;color:var(--ink);padding-top:clamp(10px,2dvh,16px)}
 .link{color:var(--blue);font:inherit;font-weight:700;background:none;border:0;cursor:pointer;padding:0}
-
-/* success reveal */
-.reveal{position:absolute;inset:0;z-index:5;background:var(--grad);clip-path:circle(0 at 50% 82%);transition:clip-path .9s var(--ease);
- display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;padding:30px;visibility:hidden}
+.reveal{position:absolute;inset:0;z-index:5;background:var(--grad);clip-path:circle(0 at 50% 82%);transition:clip-path .9s var(--ease);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;padding:30px;visibility:hidden}
 .reveal.open{clip-path:circle(150% at 50% 82%);visibility:visible}
 .reveal h3{margin:0 0 8px;font-size:28px;font-weight:600;opacity:0;transition:opacity .5s .7s}
 .reveal p{margin:0 0 24px;color:#e6edff;opacity:0;transition:opacity .5s .8s}
 .reveal button{opacity:0;transition:opacity .5s .9s;padding:12px 22px;border-radius:24px;border:1px solid #fff;background:none;color:#fff;font-size:14px;font-weight:600;cursor:pointer}
 .reveal.open h3,.reveal.open p,.reveal.open button{opacity:1}
+.chat{position:absolute;inset:0;z-index:6;background:var(--paper);display:none;flex-direction:column}
+.chat.open{display:flex}
+.chat-head{padding:calc(16px + env(safe-area-inset-top,0px)) 20px 14px;background:var(--grad);color:#fff;font-weight:700;letter-spacing:.16em}
+.msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.m{max-width:82%;padding:10px 14px;border-radius:16px;font-size:15px;line-height:1.4;white-space:pre-wrap}
+.m.user{align-self:flex-end;background:var(--blue);color:#fff}
+.m.assistant{align-self:flex-start;background:#fff;box-shadow:0 2px 8px rgba(20,30,90,.08)}
+.chat-in{display:flex;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px))}
+.chat-in input{flex:1;width:auto;height:48px;padding:0 16px;border:1px solid var(--line)}
+.chat-in button{height:48px;border:0;border-radius:16px;background:var(--blue);color:#fff;font-weight:600;padding:0 18px;cursor:pointer}
 @media (prefers-reduced-motion:reduce){*{transition-duration:.01s!important;transition-delay:0s!important;animation:none!important}}
 </style>
 </head>
@@ -135,7 +133,16 @@ input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(10,6
     <div class="bottom rise" style="--i:9">Already have an account? <button class="link" type="button" data-go="login">Login</button></div>
   </form>
 
-  <div class="reveal" id="reveal"><h3 id="rt">You’re in</h3><p id="rp">Welcome to Chronicle AI.</p><button id="again" type="button">Replay animation</button></div>
+  <div class="reveal" id="reveal"><h3 id="rt">You’re in</h3><p id="rp">Welcome to Chronicle AI.</p><button id="again" type="button">Start chatting</button></div>
+
+  <div class="chat" id="chat">
+    <div class="chat-head">CHRONICLE AI</div>
+    <div class="msgs" id="msgs"></div>
+    <form class="chat-in" id="cf">
+      <input id="ci" type="text" placeholder="Message Chronicle AI" autocomplete="off">
+      <button type="submit">Send</button>
+    </form>
+  </div>
 </main>
 <script>
 const screen = document.getElementById('screen');
@@ -143,7 +150,6 @@ const reveal = document.getElementById('reveal');
 let timers = [];
 function later(fn, ms){ timers.push(setTimeout(fn, ms)); }
 
-/* social buttons (same hover-expand animation) */
 const SOC = [
  ['Google','#ea4335',106,'<svg viewBox="0 0 24 24"><path fill="#4285F4" d="M23.5 12.27c0-.85-.08-1.67-.22-2.45H12v4.64h6.45a5.5 5.5 0 0 1-2.4 3.62v3h3.87c2.27-2.09 3.58-5.17 3.58-8.81z"/><path fill="#34A853" d="M12 24c3.24 0 5.96-1.07 7.95-2.91l-3.87-3c-1.07.72-2.45 1.15-4.08 1.15-3.13 0-5.78-2.11-6.73-4.96H1.27v3.1A12 12 0 0 0 12 24z"/><path fill="#FBBC05" d="M5.27 14.28A7.2 7.2 0 0 1 4.9 12c0-.79.14-1.56.37-2.28v-3.1H1.27A12 12 0 0 0 0 12c0 1.94.46 3.77 1.27 5.38l4-3.1z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.43-3.43C17.95 1.19 15.24 0 12 0A12 12 0 0 0 1.27 6.62l4 3.1C6.22 6.86 8.87 4.75 12 4.75z"/></svg>'],
  ['Apple','#111',100,'<svg viewBox="0 0 24 24" fill="#111"><path d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9-.7 0-1.8-.8-3-.8-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7c1.3 0 2.1-1.1 2.8-2.3.9-1.3 1.3-2.6 1.3-2.7-.1 0-2.5-1-2.5-3.7zM14.2 5.8c.6-.8 1.1-1.9.9-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1.1.1 2.1-.5 2.8-1.3z"/></svg>'],
@@ -183,32 +189,4 @@ document.querySelectorAll('input').forEach(i => i.addEventListener('input', () =
   (i.closest('.field') || i.closest('.agree'))?.classList.remove('bad');
 }));
 
-function mark(el, bad){ const w = el.closest('.field') || el.closest('.agree'); w.classList.toggle('bad', bad); return bad; }
-const emailOk = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-
-function submit(form, title, msg){
-  const btn = form.querySelector('.login');
-  btn.classList.add('busy');
-  document.getElementById('rt').textContent = title;
-  document.getElementById('rp').textContent = msg;
-  later(() => reveal.classList.add('open'), 1300);
-}
-document.getElementById('lf').addEventListener('submit', e => {
-  e.preventDefault();
-  const em = document.getElementById('le'), pw = document.getElementById('lp');
-  const bad = [mark(em, !emailOk(em.value.trim())), mark(pw, !pw.value)];
-  if (bad.some(Boolean)) return;
-  submit(e.target, 'You’re in', 'Welcome to Chronicle AI.');
-});
-document.getElementById('sf').addEventListener('submit', e => {
-  e.preventDefault();
-  const n = document.getElementById('sn'), em = document.getElementById('se'), p = document.getElementById('sp'), c = document.getElementById('sc'), a = document.getElementById('sa');
-  const bad = [mark(n, !n.value.trim()), mark(em, !emailOk(em.value.trim())), mark(p, p.value.length < 8), mark(c, !c.value || c.value !== p.value), mark(a, !a.checked)];
-  if (bad.some(Boolean)) return;
-  submit(e.target, 'Account created', 'Welcome to Chronicle AI.');
-});
-document.getElementById('again').addEventListener('click', play);
-play();
-</script>
-</body>
-                                                                                                                                                                </html>
+function mark(el, bad){ const w = el.
