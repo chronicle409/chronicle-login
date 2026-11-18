@@ -4,7 +4,20 @@
   const scenes = document.getElementById("intro-scenes");
   const logo = document.getElementById("intro-logo");
 
-  if (!intro || !scenes || !logo) return;
+  function finishIntro() {
+    window.dispatchEvent(new Event("chronicle:intro-finished"));
+  }
+
+  if (!intro || !scenes || !logo) {
+    finishIntro();
+    return;
+  }
+
+  if (sessionStorage.getItem("chronicleIntroPlayed")) {
+    intro.remove();
+    finishIntro();
+    return;
+  }
 
   const drawings = [
     {
@@ -90,12 +103,14 @@
     logo.appendChild(video);
     logo.style.opacity = "1";
 
+    const videoFinished = new Promise(resolve => {
+      video.addEventListener("ended", resolve, { once: true });
+      video.addEventListener("error", resolve, { once: true });
+    });
+
     try {
       await video.play();
-      await new Promise(resolve => {
-        video.addEventListener("ended", resolve, { once: true });
-        video.addEventListener("error", resolve, { once: true });
-      });
+      await videoFinished;
     } catch (error) {
       await wait(3000);
     }
@@ -103,11 +118,13 @@
     intro.style.transition = "opacity .7s ease";
     intro.style.opacity = "0";
     await wait(750);
+
     intro.remove();
     document.documentElement.classList.remove("chronicle-intro-active");
+
+    sessionStorage.setItem("chronicleIntroPlayed", "yes");
+    finishIntro();
   }
 
-  if (sessionStorage.getItem("chronicleIntroPlayed")) return;
-  sessionStorage.setItem("chronicleIntroPlayed", "yes");
   play();
 })();
