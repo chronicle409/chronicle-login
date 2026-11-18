@@ -1,13 +1,10 @@
 /* Chronicle AI - animated robot logo.
-   Ball path, hits and the words Reliable / Fast / Affordable copied from the
-   reference video, then the robot pops out, slides left and the name wipes in.
-   Words shake right after each ball hit. Plays once (about 5.6s) and then stays.
-   Self-contained: injects its own CSS. */
+   Original animation preserved. Starts only after the intro finishes. */
 (function () {
   'use strict';
 
-  var T = 4.6; /* total seconds */
-  var O = -0.8; /* the robot pops just before the last ball hit */
+  var T = 4.6;
+  var O = -0.8;
   function P(t) { return (t / T * 100).toFixed(3) + '%'; }
   function KF(name, steps) {
     var s = '@keyframes ' + name + '{';
@@ -16,14 +13,12 @@
   }
 
   var SH = 'translateX(var(--cl-shift,60px))';
-  var OUT = 'cubic-bezier(.05,.7,.2,1)';   /* fast launch, soft landing */
-  var IN = 'cubic-bezier(.6,0,.9,.6)';     /* slow start, fast hit */
+  var OUT = 'cubic-bezier(.05,.7,.2,1)';
+  var IN = 'cubic-bezier(.6,0,.9,.6)';
   function BT(x, y, r, sx, sy, ease) {
     return 'transform:translate(' + x + 'px,' + y + 'px) rotate(' + r + 'deg) scale(' + sx + ',' + sy + ')' + (ease ? ';animation-timing-function:' + ease : '');
   }
   var WT = 'translate(-50%,-50%)';
-  /* shake: quick decaying left-right jitter (with a little tilt) right after a ball hit.
-     Returns keyframe steps starting at time t0, one every 'dt' seconds. */
   var SHK = [7, -6.5, 5.5, -4.5, 3.5, -2.5, 1.5, -0.7];
   function SHAKE(t0, dt, sq, y0) {
     var o = [];
@@ -35,8 +30,6 @@
     return o;
   }
 
-  /* ball: drops from the top, hits the middle (Reliable), up-right and back (Fast),
-     down-right and back (Affordable), down-left and back, then swells and the head pops out */
   var DOT = KF('cl-dot', [
     [0, 'opacity:0;' + BT(0, -110, 90, 1, 1)],
     [0.17, 'opacity:0;' + BT(0, -110, 90, 1, 1)],
@@ -68,9 +61,6 @@
     [T, 'opacity:0;transform:' + WT + ' scale(1,.05)']
   ]));
 
-  /* "Fast" copied from the reference, frame by frame (30fps):
-     it builds from the left and right edges toward the middle, then two thin lines sweep left to right,
-     one above the word and one below it (the lower one starts a little later), and vanish */
   var W2 = KF('cl-w2', [
     [0, 'opacity:0;transform:' + WT + ' scale(1,1)'],
     [0.975, 'opacity:0;transform:' + WT + ' scale(1,1)']
@@ -153,7 +143,7 @@
   ]);
 
   var A = T + 's linear 1 both';
-  var TS = 3.7 + O; /* the name starts here (same wipe as before) */
+  var TS = 3.7 + O;
 
   var CSS = [
     '.brand h1,.brand .logo{display:none!important}',
@@ -179,26 +169,16 @@
     '.cl-look{animation:cl-look ' + T + 's ease-in-out 1 both}',
     '.cl-e{animation:cl-eyei ' + T + 's ease-in-out 1 both}',
     '.cl-mouth{animation:cl-mouth ' + T + 's ease-in-out 1 both}',
-
-    /* the name starts hidden behind the robot and fades in as the robot slides back (the name's own animation is unchanged) */
     '.cl-hide{display:inline-block;will-change:transform,opacity;animation:cl-out .493s cubic-bezier(.45,0,.2,1) ' + TS + 's 1 both}',
     '.cl-name{display:inline-block;font-family:Anton,Impact,"Arial Narrow",sans-serif;font-weight:400;font-size:var(--cl-font);letter-spacing:-.02em;white-space:nowrap;transform-origin:0 50%;animation:cl-wipe 1.1s cubic-bezier(.3,.7,.3,1) ' + TS + 's 1 both,cl-stretch 1.1s ease-in-out ' + TS + 's 1 both}',
     '.cl-l{display:inline-block;white-space:pre;transform-origin:50% 60%;animation:cl-let .9s linear calc(' + TS + 's + var(--i) * .05s) 1 both}',
-
     ROBOT, EYE,
     '@keyframes cl-look{0%,100%{transform:translate(0,0)}}',
     EAR('cl-earl'), EAR('cl-earr'),
     DOT, W1, W2, W3, FL, FR, BTOP, BBOT, BODY, MOUTH, SIDE,
-
     '@keyframes cl-out{0%{opacity:0;transform:translateX(calc(var(--cl-shift,60px) - var(--cl-robot,54px) / 2 - var(--cl-gap,10px)))}100%{opacity:1;transform:translateX(0)}}',
-
-    /* text is revealed by a plain left-to-right wipe (no fade) */
     '@keyframes cl-wipe{0%{clip-path:inset(-30% 100% -30% -10%)}100%{clip-path:inset(-30% -45% -30% -10%)}}',
-
-    /* stretch (from the FedEx reference): the word starts small and squeezed, grows, stretches a bit too tall, then settles */
     '@keyframes cl-stretch{0%{transform:scale(.6,.5)}12%{transform:scale(.7,.6)}58%{transform:scale(1.08,1.17)}80%{transform:scale(.98,.96)}100%{transform:scale(1,1)}}',
-
-    /* each letter (solid, no fade): slanted and spread out, then squeezes tight (letters overlap), straightens and settles */
     '@keyframes cl-let{' +
       '0%{transform:translateX(calc(var(--i) * .22em)) skewX(-22deg) rotate(0)}' +
       '18%{transform:translateX(calc(var(--i) * .19em)) skewX(-22deg) rotate(0)}' +
@@ -265,7 +245,6 @@
     }
   }
 
-  /* work out how far right the robot starts so it is centred over the finished logo */
   function measure(w) {
     var r = w.querySelector('.cl-robot');
     if (!r) return;
@@ -325,10 +304,5 @@
     }
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', start);
-  } else {
-    start();
-  }
+  window.addEventListener('chronicle:intro-finished', start, { once: true });
 })();
-
